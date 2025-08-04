@@ -39,7 +39,7 @@ self.addEventListener("message", (event) => {
       body: `La tarea "${task.text}" ${
         status === "vencida" ? "ya venció" : "vence pronto"
       }.`,
-      icon: "/icon.png",
+      icon: "mimagenx512.png",
       actions: [{ action: "open", title: "Abrir App" }],
     });
 
