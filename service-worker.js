@@ -1,14 +1,16 @@
 const CACHE_NAME = "gestor-tareas-v1";
+const BASE = "/gestor-tareas-react";
 const urlsToCache = [
-  "/",
-  "/index.html",
-  "/app.css",
-  "/app.jsx",
-  "/manifest.json",
-  "/index.jsx"
+   `${BASE}/`,
+  `${BASE}/index.html`,
+  `${BASE}/app.css`,
+  `${BASE}/app.jsx`,
+  `${BASE}/index.jsx`,
+  `${BASE}/manifest.json`,
 ];
 
 self.addEventListener("install", (event) => {
+  console.log("SW instalado");
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(urlsToCache);
@@ -23,8 +25,19 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
-self.addEventListener("install", () => console.log("SW instalado"));
-self.addEventListener("activate", () => console.log("SW activo"));
+self.addEventListener("activate", (event) => {
+  console.log("SW activo");
+  event.waitUntil(
+    caches.keys().then((cacheNames) =>
+      Promise.all(
+        cacheNames
+          .filter((name) => name !== CACHE_NAME)
+          .map((name) => caches.delete(name))
+      )
+    )
+  );
+});
+
 
 self.addEventListener("message", (event) => {
   if (event.data?.type === "SHOW_NOTIFICATION") {
