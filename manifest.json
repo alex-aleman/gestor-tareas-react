@@ -1,11 +1,12 @@
 {
   "name": "Gestor de Tareas",
   "short_name": "Tareas",
-  "start_url": ".",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#121212",
   "theme_color": "#4a90e2",
   "orientation": "portrait",
+  "scope": "./",
   "icons": [
     {
       "src": "mimagenx192.png",

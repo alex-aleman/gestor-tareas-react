@@ -68,6 +68,6 @@ self.addEventListener("message", (event) => {
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
   if (event.action === "open") {
-    event.waitUntil(clients.openWindow("/"));
+    event.waitUntil(clients.openWindow("/gestor-tareas-react/"));
   }
 });
